@@ -1,0 +1,14 @@
+.rating {
+  display: flex;
+  align-items: center;
+
+  &__icon {
+    margin-right: 5px;
+    @include media-query(medium) {
+      height: 24px;
+    }
+    @include media-query(large) {
+      height: 30px;
+    }
+  }
+}

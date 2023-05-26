@@ -1,0 +1,36 @@
+.server {
+  display: flex;
+  justify-content: flex-end ;
+
+  &__name {
+    font-size: 12px;
+    font-weight: 500;
+    margin-right: 10px;
+    @include media-query(medium) {
+      font-size: 15px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    @include media-query(large) {
+      font-size: 18px;
+    }
+  }
+  &__name p {
+    margin: 0;
+    text-align: end;
+  }
+  &__picture {
+    border-radius: 50%;
+    height: 32px;
+    width: 32px;
+    @include media-query(medium) {
+      height: 48px;
+      width: 48px;
+    }
+    @include media-query(large) {
+      height: 64px;
+      width: 64px;
+    }
+  }
+}
