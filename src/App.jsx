@@ -13,14 +13,19 @@ import PageNotFound from "./pages/PageNotFound";
 //components
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import MainSection from "./components/MainSection";
 
 function App() {
   return (
-    <div className="app">
-      <Header />
-      <MainSection />
-      <Footer />
+    <div>
+      <div className="App">
+        <Router>
+            <Header />
+            <Routes>
+                <Route index element={<Home />} />
+            </Routes>
+            <Footer />
+        </Router>
+      </div>
     </div>
   );
 }

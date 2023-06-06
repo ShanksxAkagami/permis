@@ -1,24 +1,57 @@
 .banner {
-  &__text {
-    position: absolute;
-    top: 0;
-    font-size: 24px;
-    color: $white;
-    font-weight: 500;
-    margin: 0;
-    padding-left: 16px;
-    height: 100%;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(to right, $blueNight, black);
+  padding: 20px;
 
-    @include media-query(medium) {
-      font-size: 36px;
-      justify-content: center;
+  &__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 100px;
+
+    h1 {
+      color: white;
+      font-size: 32px;
+      margin-bottom: 20px;
     }
-    @include media-query(large) {
-      font-size: 48px;
+
+    .search-bar {
+      display: flex;
+      align-items: center;
+      width: 300px;
+      background-color: white;
+      border-radius: 20px;
+      padding: 10px;
+
+      input[type="text"] {
+        flex: 1;
+        border: none;
+        font-size: 16px;
+        padding: 5px;
+        margin-right: 10px;
+      }
+
+      button {
+        background-color: $orange;
+        color: white;
+        border: none;
+        padding: 8px 15px;
+        border-radius: 20px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.3s;
+
+        &:hover {
+          background-color: darken($orange, 10%);
+        }
+      }
     }
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
   }
 }
