@@ -1,0 +1,114 @@
+$blueNight: #0b009f;
+$orange: #f58220;
+
+.slots {
+  width: 58%;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  padding: 5px;
+  background-color: white;
+  margin-left: 90px;
+
+
+  &__titles {
+    display: flex;
+    padding: 0px;
+    border: 0;
+    padding-left: 10px;
+    margin-bottom: 5px;
+
+    &__prix {
+      width: 15%;
+
+    
+    }
+    &__infos {
+      width: 45%;
+     
+    }
+    &__dates {
+      width: 25%;
+
+    }
+  }
+
+  &__stages {
+    padding: 0;
+    border: 0;
+
+    &__product {
+      display: flex;
+      align-items: center;
+      margin-top: 4px;
+      margin-bottom: 4px;
+      border: 0.5px solid rgb(209, 207, 207);
+      background-color: whitesmoke;
+      height: 100px;
+      line-height: 1.5px ;
+      &:hover {
+        background: linear-gradient(to right, $blueNight, black);
+        color: white;
+      }
+
+      &__prix {
+        width: 15%;
+        text-align: center;
+        p {
+          color: $orange;
+          font-weight: bold;
+          font-size: 25px;
+        }
+      }
+      &__infos {
+        width: 45%;
+        padding-left: 10px;
+        border-left: 1px solid rgb(185, 182, 182);
+        margin-top: 5px;
+        margin-bottom: 5px;
+
+        .ville {
+          font-weight: bold;
+          font-size: 20px;
+        }
+        .adresse {
+          font-size: 13px;
+          font-family:Verdana, Geneva, Tahoma, sans-serif;
+        }
+        .numero {
+          font-size: 12px;
+          font-family:Verdana, Geneva, Tahoma, sans-serif;
+        }
+      }
+      &__dates {
+        width: 25%;
+        line-height: 10px;
+        .date {
+          font-weight: bold;
+          font-size: 14px;
+        }
+        .place {
+          color: rgb(40, 234, 33);
+          font-weight: bold;
+        
+        }
+      }
+      &__btn {
+        text-align: center;
+        width: 15%;
+        button {
+          background: linear-gradient(to right, $orange, #ff6b00);
+          color: white;
+          border: none;
+          padding: 10px 10px;
+          border-radius: 5px;
+          cursor: pointer;
+          transition: background-color 0.3s;
+    
+          &:hover {
+            background: #ff6b00;
+          }
+        }
+      }
+
+    }
+  }
+}

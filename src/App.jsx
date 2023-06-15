@@ -7,7 +7,7 @@ import "./styles/style.css";
 //pages
 import Home from "./pages/Home";
 import About from "./pages/About";
-import Product from "./pages/Product";
+import Stages from "./pages/Stages";
 import PageNotFound from "./pages/PageNotFound";
 
 //components
@@ -22,6 +22,7 @@ function App() {
             <Header />
             <Routes>
                 <Route index element={<Home />} />
+                <Route path="stages" element={<Stages />} />
             </Routes>
             <Footer />
         </Router>

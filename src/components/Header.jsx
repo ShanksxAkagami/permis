@@ -9,7 +9,7 @@ const Header = () => {
         <img src={Logo} alt="Logo" />
       </div>
       <nav className="navbar">
-        <NavLink to="/about" className="navbar__links">Stage de récupération de points</NavLink>
+        <NavLink to="/stages" className="navbar__links">Stage de récupération de points</NavLink>
         <NavLink to="/about" className="navbar__links">Infractions et législation</NavLink>
         <NavLink to="/about" className="navbar__links">Permis a points</NavLink>
         <NavLink to="/about" className="navbar__links">Nous contacter</NavLink>

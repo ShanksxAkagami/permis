@@ -16,6 +16,7 @@ body {
   justify-content: center;
   background: linear-gradient(to right, #0b009f, black);
   padding: 20px;
+  padding-bottom: 80px;
 }
 .banner__content {
   display: flex;
@@ -70,8 +71,7 @@ body {
 .section-home__info {
   display: flex;
   justify-content: center;
-  margin-bottom: 20px;
-  width: 90%;
+  margin: 35px;
 }
 .section-home__info__card {
   flex: 1;
@@ -83,7 +83,7 @@ body {
   background-color: #ffffff;
 }
 .section-home__info__card i {
-  font-size: 48px;
+  font-size: 35px;
   margin-bottom: 20px;
   color: #0b009f;
 }
@@ -108,32 +108,37 @@ body {
 }
 .section-home__stages {
   display: flex;
-  flex-direction: row;
-  align-items: flex-start;
+  justify-content: center;
+  align-items: center;
   padding: 20px 5%;
   background-color: #f5f5f5;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  width: 100%;
 }
-.section-home__stages h2 {
+.section-home__stages__infos {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.section-home__stages__infos h2 {
   font-size: 24px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   font-weight: bold;
-  align-self: flex-start;
 }
-.section-home__stages p {
+.section-home__stages__infos p {
   font-size: 16px;
-  margin-bottom: 10px;
-  align-self: flex-start;
+  margin-bottom: 20px;
+  text-align: center;
 }
-.section-home__stages p a {
+.section-home__stages__infos p a {
   color: #007bff;
   text-decoration: underline;
 }
-.section-home__stages p a:hover {
+.section-home__stages__infos p a:hover {
   text-decoration: none;
 }
-.section-home__stages button.orange-button {
+.section-home__stages__infos button.orange-button {
   padding: 10px 20px;
   background: linear-gradient(to bottom, #ff9800, #ff5722);
   border: none;
@@ -142,22 +147,21 @@ body {
   cursor: pointer;
   color: #ffffff;
   transition: background-color 0.3s;
-  align-self: flex-start;
 }
-.section-home__stages button.orange-button:hover {
+.section-home__stages__infos button.orange-button:hover {
   background-color: #ff5722;
 }
-.section-home__stages button.orange-button span {
+.section-home__stages__infos button.orange-button span {
   display: inline-block;
 }
-.section-home__stages img {
+.section-home__stages__img {
   align-self: flex-end;
   margin-left: 20px;
 }
 .section-home__permis {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
   padding: 20px;
   background-color: #ffffff;
@@ -165,25 +169,28 @@ body {
   height: 500px;
   background-image: url("../assets/backgroung-section-permis.png");
 }
-.section-home__permis h2 {
+.section-home__permis__infos {
+  text-align: center;
+}
+.section-home__permis__infos h2 {
   font-size: 24px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   font-weight: bold;
   color: #ffffff;
 }
-.section-home__permis p {
+.section-home__permis__infos p {
   font-size: 16px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   color: #ffffff;
 }
-.section-home__permis p a {
+.section-home__permis__infos p a {
   color: #007bff;
   text-decoration: underline;
 }
-.section-home__permis p a:hover {
+.section-home__permis__infos p a:hover {
   text-decoration: none;
 }
-.section-home__permis button.orange-button {
+.section-home__permis__infos button.orange-button {
   padding: 10px 20px;
   background: linear-gradient(to bottom, #ff9800, #ff5722);
   border: none;
@@ -193,11 +200,109 @@ body {
   color: #ffffff;
   transition: background-color 0.3s;
 }
-.section-home__permis button.orange-button:hover {
+.section-home__permis__infos button.orange-button:hover {
   background-color: #ff5722;
 }
-.section-home__permis button.orange-button span {
+.section-home__permis__infos button.orange-button span {
   display: inline-block;
+}
+
+.slots {
+  width: 58%;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  padding: 5px;
+  background-color: white;
+  margin-left: 90px;
+}
+.slots__titles {
+  display: flex;
+  padding: 0px;
+  border: 0;
+  padding-left: 10px;
+  margin-bottom: 5px;
+}
+.slots__titles__prix {
+  width: 15%;
+}
+.slots__titles__infos {
+  width: 45%;
+}
+.slots__titles__dates {
+  width: 25%;
+}
+.slots__stages {
+  padding: 0;
+  border: 0;
+}
+.slots__stages__product {
+  display: flex;
+  align-items: center;
+  margin-top: 4px;
+  margin-bottom: 4px;
+  border: 0.5px solid rgb(209, 207, 207);
+  background-color: whitesmoke;
+  height: 100px;
+  line-height: 1.5px;
+}
+.slots__stages__product:hover {
+  background: linear-gradient(to right, #0b009f, black);
+  color: white;
+}
+.slots__stages__product__prix {
+  width: 15%;
+  text-align: center;
+}
+.slots__stages__product__prix p {
+  color: #f58220;
+  font-weight: bold;
+  font-size: 25px;
+}
+.slots__stages__product__infos {
+  width: 45%;
+  padding-left: 10px;
+  border-left: 1px solid rgb(185, 182, 182);
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+.slots__stages__product__infos .ville {
+  font-weight: bold;
+  font-size: 20px;
+}
+.slots__stages__product__infos .adresse {
+  font-size: 13px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.slots__stages__product__infos .numero {
+  font-size: 12px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.slots__stages__product__dates {
+  width: 25%;
+  line-height: 10px;
+}
+.slots__stages__product__dates .date {
+  font-weight: bold;
+  font-size: 14px;
+}
+.slots__stages__product__dates .place {
+  color: rgb(40, 234, 33);
+  font-weight: bold;
+}
+.slots__stages__product__btn {
+  text-align: center;
+  width: 15%;
+}
+.slots__stages__product__btn button {
+  background: linear-gradient(to right, #f58220, #ff6b00);
+  color: white;
+  border: none;
+  padding: 10px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.slots__stages__product__btn button:hover {
+  background: #ff6b00;
 }
 
 header {
@@ -240,6 +345,94 @@ header .login button {
 }
 header .login button:hover {
   background: #ff6b00;
+}
+
+.stages {
+  background-color: whitesmoke;
+  width: 100%;
+  padding-bottom: 50px;
+}
+.stages__container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.stages__container__route {
+  text-align: left;
+  font-size: 14px;
+  width: 60%;
+  padding-left: 90px;
+  margin-top: 20px;
+}
+.stages__container h1 {
+  text-align: left;
+  font-size: 28px;
+  font-weight: bold;
+  width: 100%;
+  padding-left: 90px;
+  margin-bottom: 0;
+  margin-top: 1px;
+}
+.stages__container__text {
+  text-align: left;
+  font-size: 17px;
+  width: 55%;
+  padding-left: 90px;
+  margin-bottom: 30px;
+}
+.stages__container__info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 25%;
+  margin-right: 90px;
+}
+.stages__container__info__contact {
+  background-color: white;
+  width: 100%;
+  height: 200px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.stages__container__info__contact .phone-number {
+  font-weight: bold;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  font-size: 35px;
+  color: #f58220;
+  margin: 10px;
+}
+.stages__container__info__contact .service {
+  font-weight: bold;
+  font-size: 18px;
+  margin: 1px;
+}
+.stages__container__info__contact span {
+  color: blue;
+}
+.stages__container__info__pay {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 250px;
+  background-color: white;
+  justify-content: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.stages__container__info__pay p {
+  font-weight: bold;
+  margin: 0;
+}
+.stages__container__info__pay img {
+  width: 200px;
+  margin-top: 10px;
 }
 
 /*# sourceMappingURL=style.css.map */
