@@ -1,0 +1,36 @@
+.stage-form {
+    /* Vos styles pour le conteneur du formulaire */
+  }
+  
+  .stage-form__field {
+    /* Styles pour chaque champ de formulaire (nom, prénom, etc.) */
+    margin-bottom: 20px;
+  }
+  
+  .stage-form__field label {
+    /* Styles pour les étiquettes des champs */
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .stage-form__field input,
+  .stage-form__field select {
+    /* Styles pour les champs de saisie (input, select, etc.) */
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .stage-form__field button {
+    /* Styles pour le bouton de soumission */
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  /* Ajoutez des styles supplémentaires selon vos besoins */
+  

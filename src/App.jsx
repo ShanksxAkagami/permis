@@ -9,6 +9,7 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import Stages from "./pages/Stages";
 import PageNotFound from "./pages/PageNotFound";
+import StageReservation from "./pages/StageReservation";
 
 //components
 import Header from "./components/Header";
@@ -23,6 +24,10 @@ function App() {
             <Routes>
                 <Route index element={<Home />} />
                 <Route path="stages" element={<Stages />} />
+                <Route path="infractions" element={<Stages />} />
+                <Route path="permisapoints" element={<Stages />} />
+                <Route path="contact" element={<Stages />} />
+                <Route path="stagereservation" element={<StageReservation />} />
             </Routes>
             <Footer />
         </Router>

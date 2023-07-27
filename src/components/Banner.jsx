@@ -6,7 +6,7 @@ const Banner = () => {
   return (
     <div className="banner">
       <div className="banner__content">
-        <h1>Points Auto</h1>
+        <h1>+4 POINTS</h1>
         <div className="search-bar">
           <input type="text" placeholder="Chercher un lieu ou un département" />
           <button type="button">
