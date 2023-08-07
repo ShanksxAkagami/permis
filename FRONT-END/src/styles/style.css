@@ -1,0 +1,504 @@
+@charset "UTF-8";
+body {
+  margin: 0;
+  font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  max-width: 1440px;
+  margin: auto;
+  position: relative;
+  min-height: 100vh;
+}
+
+.banner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(to right, rgb(7, 199, 247), rgb(241, 113, 8));
+  padding: 20px;
+  padding-bottom: 80px;
+  height: 500px;
+}
+.banner__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 100px;
+}
+.banner__content h1 {
+  color: white;
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+.banner__content .search-bar {
+  display: flex;
+  align-items: center;
+  width: 300px;
+  background-color: white;
+  border-radius: 20px;
+  padding: 10px;
+}
+.banner__content .search-bar input[type=text] {
+  flex: 1;
+  border: none;
+  font-size: 16px;
+  padding: 5px;
+  margin-right: 10px;
+}
+.banner__content .search-bar button {
+  background-color: #f58220;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.banner__content .search-bar button:hover {
+  background-color: #d8690a;
+}
+.banner img {
+  max-width: 100%;
+  height: auto;
+}
+
+.section-home {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.section-home__info {
+  display: flex;
+  justify-content: center;
+  margin: 35px;
+}
+.section-home__info__card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+  background-color: #ffffff;
+}
+.section-home__info__card i {
+  font-size: 35px;
+  margin-bottom: 20px;
+  color: #0b009f;
+}
+.section-home__info__card i:hover {
+  color: #f58220;
+}
+.section-home__info__card h3 {
+  font-size: 24px;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+.section-home__info__card p {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+.section-home__info__card p a {
+  color: #007bff;
+  text-decoration: underline;
+}
+.section-home__info__card p a:hover {
+  text-decoration: none;
+}
+.section-home__stages {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 5%;
+  background-color: #f5f5f5;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.section-home__stages__infos {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.section-home__stages__infos h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+.section-home__stages__infos p {
+  font-size: 16px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+.section-home__stages__infos p a {
+  color: #007bff;
+  text-decoration: underline;
+}
+.section-home__stages__infos p a:hover {
+  text-decoration: none;
+}
+.section-home__stages__infos button.orange-button {
+  padding: 10px 20px;
+  background: linear-gradient(to bottom, #ff9800, #ff5722);
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  color: #ffffff;
+  transition: background-color 0.3s;
+}
+.section-home__stages__infos button.orange-button:hover {
+  background-color: #ff5722;
+}
+.section-home__stages__infos button.orange-button span {
+  display: inline-block;
+}
+.section-home__stages__img {
+  align-self: flex-end;
+  margin-left: 20px;
+}
+.section-home__permis {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  height: 500px;
+  background-image: url("../assets/backgroung-section-permis.png");
+}
+.section-home__permis__infos {
+  text-align: center;
+}
+.section-home__permis__infos h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  font-weight: bold;
+  color: #ffffff;
+}
+.section-home__permis__infos p {
+  font-size: 16px;
+  margin-bottom: 20px;
+  color: #ffffff;
+}
+.section-home__permis__infos p a {
+  color: #007bff;
+  text-decoration: underline;
+}
+.section-home__permis__infos p a:hover {
+  text-decoration: none;
+}
+.section-home__permis__infos button.orange-button {
+  padding: 10px 20px;
+  background: linear-gradient(to bottom, #ff9800, #ff5722);
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  color: #ffffff;
+  transition: background-color 0.3s;
+}
+.section-home__permis__infos button.orange-button:hover {
+  background-color: #ff5722;
+}
+.section-home__permis__infos button.orange-button span {
+  display: inline-block;
+}
+
+.slots {
+  width: 58%;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  padding: 5px;
+  background-color: white;
+  margin-left: 90px;
+}
+.slots__titles {
+  display: flex;
+  padding: 0px;
+  border: 0;
+  padding-left: 10px;
+  margin-bottom: 5px;
+}
+.slots__titles__prix {
+  width: 15%;
+}
+.slots__titles__infos {
+  width: 45%;
+}
+.slots__titles__dates {
+  width: 25%;
+}
+.slots__stages {
+  padding: 0;
+  border: 0;
+}
+.slots__stages__product {
+  display: flex;
+  align-items: center;
+  margin-top: 4px;
+  margin-bottom: 4px;
+  border: 0.5px solid rgb(209, 207, 207);
+  background-color: whitesmoke;
+  height: 100px;
+  line-height: 1.5px;
+}
+.slots__stages__product:hover {
+  background: linear-gradient(to right, #0b009f, black);
+  color: white;
+}
+.slots__stages__product__prix {
+  width: 15%;
+  text-align: center;
+}
+.slots__stages__product__prix p {
+  color: #f58220;
+  font-weight: bold;
+  font-size: 25px;
+}
+.slots__stages__product__infos {
+  width: 45%;
+  padding-left: 10px;
+  border-left: 1px solid rgb(185, 182, 182);
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+.slots__stages__product__infos .ville {
+  font-weight: bold;
+  font-size: 20px;
+}
+.slots__stages__product__infos .adresse {
+  font-size: 13px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.slots__stages__product__infos .numero {
+  font-size: 12px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.slots__stages__product__dates {
+  width: 25%;
+  line-height: 10px;
+}
+.slots__stages__product__dates .date {
+  font-weight: bold;
+  font-size: 14px;
+}
+.slots__stages__product__dates .place {
+  color: rgb(40, 234, 33);
+  font-weight: bold;
+}
+.slots__stages__product__btn {
+  text-align: center;
+  width: 15%;
+}
+.slots__stages__product__btn button {
+  background: linear-gradient(to right, #f58220, #ff6b00);
+  color: white;
+  border: none;
+  padding: 10px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.slots__stages__product__btn button:hover {
+  background: #ff6b00;
+}
+
+.stage-form {
+  max-width: 500px;
+  /* Limite la largeur du formulaire pour qu'il ne prenne pas toute la largeur de l'écran */
+  margin: 0 auto;
+  /* Centre le formulaire horizontalement */
+  padding: 20px;
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  /* Styles pour chaque champ de formulaire */
+  /* Styles pour le bouton Soumettre */
+}
+.stage-form__field {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+  /* Styles pour la liste de suggestions de pays */
+}
+.stage-form__field label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+.stage-form__field input,
+.stage-form__field select {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+.stage-form__field .pays-suggestions {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border: 1px solid #ccc;
+  border-top: none;
+  border-radius: 0 0 3px 3px;
+  background-color: #fff;
+  position: absolute;
+  width: 100%;
+  max-height: 200px;
+  overflow-y: auto;
+}
+.stage-form__field .pays-suggestions li {
+  padding: 8px 10px;
+  cursor: pointer;
+}
+.stage-form__field .pays-suggestions li:hover {
+  background-color: #f2f2f2;
+}
+.stage-form__field button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.stage-form__field button:hover {
+  background-color: #0056b3;
+}
+
+.permisnouveau {
+  background-image: url(../assets/newPermis-1.png);
+}
+
+header {
+  background: linear-gradient(to right, rgb(7, 199, 247), rgb(241, 113, 8));
+  padding: 20px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: white;
+  font-family: Arial, sans-serif;
+  height: 15px;
+  /* Hauteur encore plus réduite */
+}
+header .logo img {
+  max-width: 100px;
+  max-height: 80px;
+  /* Taille réduite de l'image du logo */
+}
+header .navbar__links {
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s;
+  margin-right: 70px;
+  /* Espace accru entre les liens */
+  font-size: 14px;
+  /* Taille de police réduite */
+  font-weight: bold;
+}
+header .navbar__links:hover {
+  color: #f58220;
+}
+header .login button {
+  background: linear-gradient(to right, #f58220, #ff6b00);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+header .login button:hover {
+  background: #ff6b00;
+}
+
+.stages {
+  background-color: whitesmoke;
+  width: 100%;
+  padding-bottom: 50px;
+}
+.stages__container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.stages__container__route {
+  text-align: left;
+  font-size: 14px;
+  width: 60%;
+  padding-left: 90px;
+  margin-top: 20px;
+}
+.stages__container h1 {
+  text-align: left;
+  font-size: 28px;
+  font-weight: bold;
+  width: 100%;
+  padding-left: 90px;
+  margin-bottom: 0;
+  margin-top: 1px;
+}
+.stages__container__text {
+  text-align: left;
+  font-size: 17px;
+  width: 55%;
+  padding-left: 90px;
+  margin-bottom: 30px;
+}
+.stages__container__info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 25%;
+  margin-right: 90px;
+}
+.stages__container__info__contact {
+  background-color: white;
+  width: 100%;
+  height: 200px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.stages__container__info__contact .phone-number {
+  font-weight: bold;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  font-size: 35px;
+  color: #f58220;
+  margin: 10px;
+}
+.stages__container__info__contact .service {
+  font-weight: bold;
+  font-size: 18px;
+  margin: 1px;
+}
+.stages__container__info__contact span {
+  color: blue;
+}
+.stages__container__info__pay {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 250px;
+  background-color: white;
+  justify-content: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.stages__container__info__pay p {
+  font-weight: bold;
+  margin: 0;
+}
+.stages__container__info__pay img {
+  width: 200px;
+  margin-top: 10px;
+}
+
+/*# sourceMappingURL=style.css.map */

@@ -1,0 +1,50 @@
+
+
+header {
+  background: linear-gradient(to right, rgb(7, 199, 247), rgb(241, 113, 8));
+  padding: 20px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: white;
+  font-family: Arial, sans-serif;
+  height: 15px; /* Hauteur encore plus réduite */
+
+  .logo {
+    img {
+      max-width: 100px;
+      max-height: 80px; /* Taille réduite de l'image du logo */
+    }
+  }
+
+  .navbar {
+    &__links {
+      color: white;
+      text-decoration: none;
+      transition: color 0.3s;
+      margin-right: 70px; /* Espace accru entre les liens */
+      font-size: 14px; /* Taille de police réduite */
+      font-weight: bold;
+      &:hover {
+        color: $orange;
+      }
+    }
+  }
+
+  .login {
+    button {
+      background: linear-gradient(to right, $orange, #ff6b00);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+
+      &:hover {
+        background: #ff6b00;
+      }
+    }
+  }
+}
+
