@@ -323,39 +323,30 @@ body {
   display: flex;
   flex-direction: column;
   margin-bottom: 20px;
-  /* Styles pour la liste de suggestions de pays */
 }
-.stage-form__field label {
-  font-weight: bold;
-  margin-bottom: 5px;
+.stage-form__field-stage {
+  display: flex;
 }
-.stage-form__field input,
-.stage-form__field select {
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 3px;
+.stage-form__field-permis {
+  display: flex;
+  flex-direction: column;
 }
-.stage-form__field .pays-suggestions {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  border: 1px solid #ccc;
-  border-top: none;
-  border-radius: 0 0 3px 3px;
-  background-color: #fff;
-  position: absolute;
+.stage-form #delivrance {
+  position: relative;
+  bottom: 480px;
+  left: 150px;
+  width: 150px;
+}
+.stage-form #ville {
+  position: relative;
+  bottom: 522px;
+  left: 310px;
+  width: 150px;
+}
+.stage-form img {
   width: 100%;
-  max-height: 200px;
-  overflow-y: auto;
 }
-.stage-form__field .pays-suggestions li {
-  padding: 8px 10px;
-  cursor: pointer;
-}
-.stage-form__field .pays-suggestions li:hover {
-  background-color: #f2f2f2;
-}
-.stage-form__field button {
+.stage-form button {
   padding: 10px 20px;
   background-color: #007bff;
   color: #fff;
@@ -363,12 +354,8 @@ body {
   border-radius: 3px;
   cursor: pointer;
 }
-.stage-form__field button:hover {
+.stage-form button:hover {
   background-color: #0056b3;
-}
-
-.permisnouveau {
-  background-image: url(../assets/newPermis-1.png);
 }
 
 header {

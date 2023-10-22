@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react';
 
-import StageForm from "../components/StageForm";
+import StageForm from '../components/StageForm';
 
 const StageReservation = () => {
   return (

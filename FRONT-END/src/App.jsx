@@ -14,6 +14,7 @@ import StageReservation from "./pages/StageReservation";
 //components
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import SectionHome from "./components/SectionHome";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
                 <Route path="stages" element={<Stages />} />
                 <Route path="infractions" element={<Stages />} />
                 <Route path="permisapoints" element={<Stages />} />
+                <Route path="permisapoints/alcoolauvolant" element={<SectionHome />} />
                 <Route path="contact" element={<Stages />} />
                 <Route path="stagereservation" element={<StageReservation />} />
             </Routes>
