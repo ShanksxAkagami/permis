@@ -17,6 +17,10 @@ const Header = () => {
       <div className="login">
           <button>Connexion</button>
       </div>
+      <div className="infos">
+        <p className="infos__phone"><i class="fas fa-phone"></i>   0 894 564 783</p>
+        <p className="infos__dispo">Lundi au Vendredi 9h-18h</p>
+      </div>
     </header>
   );
 };

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import validator from 'validator';
 
 import NewPermis from "../assets/newPermis-1.png";
 import NewPermisVerso from "../assets/newPermis-2.png";
@@ -55,6 +55,8 @@ const StageForm = () => {
   const [newPermis, setNewPermis] = useState(false);
   const [oldPermis, setOldPermis] = useState(false);
 
+  const host = "http://localhost:3000/api/products/";
+
 
 
 //////////////////////////////////
@@ -79,12 +81,6 @@ const StageForm = () => {
       });
       // Effacer les suggestions après avoir sélectionné un pays
       setPaysSuggestions([]);
-    };
-
-    const handleSubmit = (event) => {
-      event.preventDefault();
-      // Traitez les données du formulaire ici
-      console.log(formData);
     };
 
     const handleStageVolontaire1 = (event) => {
@@ -126,6 +122,222 @@ const StageForm = () => {
 
 
 
+/////////////////////////////////////
+/////////////////
+/////////////
+
+
+const [errors, setErrors] = useState({});
+
+
+
+const validateForm = () => {
+  setErrors({}); // Réinitialisez les erreurs à chaque validation
+
+    // Validation pour le champ "nom"
+    if (!formData.nom || !validator.isAlpha(formData.nom)) {
+      setErrors((prevErrors) => ({ ...prevErrors, nom: 'Le nom doit contenir uniquement des caractères alphabétiques.' }));
+    }
+  
+    // Validation pour le champ "prenom"
+    if (!formData.prenom || !validator.isAlpha(formData.prenom)) {
+      setErrors((prevErrors) => ({ ...prevErrors, prenom: 'Le prénom doit contenir uniquement des caractères alphabétiques.' }));
+    }
+  
+    // Validation pour le champ "dateNaissance"
+    if (!formData.dateNaissance || !validator.isDate(formData.dateNaissance)) {
+      setErrors((prevErrors) => ({ ...prevErrors, dateNaissance: 'La date de naissance n\'est pas valide.' }));
+    }
+  
+    // Validation pour le champ "paysNaissance"
+    if (!formData.paysNaissance || !validator.isAlpha(formData.paysNaissance)) {
+      setErrors((prevErrors) => ({ ...prevErrors, paysNaissance: 'Le pays de naissance doit contenir uniquement des caractères alphabétiques.' }));
+    }
+  
+    // Validation pour le champ "villeNaissance"
+    if (!formData.villeNaissance || !validator.isAlpha(formData.villeNaissance)) {
+      setErrors((prevErrors) => ({ ...prevErrors, villeNaissance: 'La ville de naissance doit contenir uniquement des caractères alphabétiques.' }));
+    }
+  
+
+    // Validation pour le champ "adresse"
+    if (!formData.adresse || !validator.isAlphanumeric(formData.adresse)) {
+      setErrors((prevErrors) => ({ ...prevErrors, adresse: 'L\'adresse doit contenir uniquement des chiffres et des lettres.' }));
+    }
+
+    // Validation pour le champ "codePostal"
+    if (!formData.codePostal || !validator.isPostalCode(formData.codePostal, 'any')) {
+      setErrors((prevErrors) => ({ ...prevErrors, codePostal: 'Le code postal n\'est pas valide.' }));
+    }
+  
+    // Validation pour le champ "email"
+    if (!formData.email || !validator.isEmail(formData.email)) {
+      setErrors((prevErrors) => ({ ...prevErrors, email: 'L\'adresse e-mail n\'est pas valide.' }));
+    }
+  
+    // Validation pour le champ "telephone"
+    if (!formData.telephone || !validator.isMobilePhone(formData.telephone, 'any', { strictMode: false })) {
+      setErrors((prevErrors) => ({ ...prevErrors, telephone: 'Le numéro de téléphone n\'est pas valide.' }));
+    } 
+
+
+
+
+
+
+
+
+
+
+
+
+
+  if (!formData.case1 && !formData.case2 && !formData.case3 && !formData.case4) {
+    setErrors((prevErrors) => ({ ...prevErrors, nom: 'Le nom est requis' }));
+  }
+
+  if (formData.case1) {
+    if (!formData.stagescas1nombrepoint && !formData.stagescas1nombrepointinconnu) {
+      setErrors((prevErrors) => ({ ...prevErrors, stagecas1vide: 'selectionnez' }));
+    }
+  }
+
+  if (formData.case2) {
+    if (!formData.stagecas2adresse || !validator.isAlphanumeric(formData.stagecas2adresse)) {
+      setErrors((prevErrors) => ({ ...prevErrors, adresse: 'L\'adresse doit contenir uniquement des chiffres et des lettres.' }));
+    }
+    if (!formData.stagecas2date|| !validator.isDate(formData.stagecas2date)) {
+      setErrors((prevErrors) => ({ ...prevErrors, dateNaissance: 'La date de naissance n\'est pas valide.' }));
+    }
+    if (!formData.stagecas2heure || !validator.isAlphanumeric(formData.stagecas2heure)) {
+      setErrors((prevErrors) => ({ ...prevErrors, adresse: 'L\'adresse doit contenir uniquement des chiffres et des lettres.' }));
+    }
+    if (!formData.stagecas2motif) {
+      setErrors((prevErrors) => ({ ...prevErrors, adresse: 'L\'adresse doit contenir uniquement des chiffres et des lettres.' }));
+    }
+    if (!formData.stagecas2soldepoints) {
+      setErrors((prevErrors) => ({ ...prevErrors, adresse: 'L\'adresse doit contenir uniquement des chiffres et des lettres.' }));
+    }
+    if (!formData.stagecas2date48N|| !validator.isDate(formData.stagecas2date48N)) {
+      setErrors((prevErrors) => ({ ...prevErrors, dateNaissance: 'La date de naissance n\'est pas valide.' }));
+    }
+  }
+
+
+
+
+
+
+
+
+
+  if (formData.case1 || formData.case2) {
+    if (!formData.casenewpermis && !formData.casenewpermi) { 
+      setErrors((prevErrors) => ({ ...prevErrors, nom: 'Le nom est requis' }));
+    }
+    if (formData.casenewpermis) { 
+      if (!formData.permisdatedelivrance|| !validator.isDate(formData.permisdatedelivrance)) {
+        setErrors((prevErrors) => ({ ...prevErrors, dateNaissance: 'La date de naissance n\'est pas valide.' }));
+      }
+      if (!formData.permisville || !validator.isAlpha(formData.permisville)) {
+        setErrors((prevErrors) => ({ ...prevErrors, villeNaissance: 'La ville de naissance doit contenir uniquement des caractères alphabétiques.' }));
+      }
+      if (!formData.permisnumero || !validator.isNumeric(formData.permisnumero)) {
+        setErrors((prevErrors) => ({ ...prevErrors, villeNaissance: 'La ville de naissance doit contenir uniquement des caractères alphabétiques.' }));
+      }
+      if (!formData.permisdateancienne|| !validator.isDate(formData.permisdateancienne)) {
+        setErrors((prevErrors) => ({ ...prevErrors, dateNaissance: 'La date de naissance n\'est pas valide.' }));
+      }
+    }
+    if (formData.caseoldpermis) { 
+      if (!formData.permisdatedelivrance|| !validator.isDate(formData.permisdatedelivrance)) {
+        setErrors((prevErrors) => ({ ...prevErrors, dateNaissance: 'La date de naissance n\'est pas valide.' }));
+      }
+      if (!formData.permisville || !validator.isAlpha(formData.permisville)) {
+        setErrors((prevErrors) => ({ ...prevErrors, villeNaissance: 'La ville de naissance doit contenir uniquement des caractères alphabétiques.' }));
+      }
+      if (!formData.permisnumero || !validator.isNumeric(formData.permisnumero)) {
+        setErrors((prevErrors) => ({ ...prevErrors, villeNaissance: 'La ville de naissance doit contenir uniquement des caractères alphabétiques.' }));
+      }
+      if (!formData.permisdateancienne|| !validator.isDate(formData.permisdateancienne)) {
+        setErrors((prevErrors) => ({ ...prevErrors, dateNaissance: 'La date de naissance n\'est pas valide.' }));
+      }
+      // je sais pourquoi jai fais ca ci dessous 
+      if (formData.oldpermischamp1 && !validator.isNumeric(formData.oldpermischamp1)) {
+        setErrors((prevErrors) => ({ ...prevErrors, villeNaissance: 'La ville de naissance doit contenir uniquement des caractères alphabétiques.' }));
+      }
+      if (formData.oldpermischamp2 && !validator.isNumeric(formData.oldpermischamp2)) {
+        setErrors((prevErrors) => ({ ...prevErrors, villeNaissance: 'La ville de naissance doit contenir uniquement des caractères alphabétiques.' }));
+      }
+    }
+  }
+
+
+
+0
+
+
+  return Object.keys(errors).length === 0; // Si l'objet errors est vide, le formulaire est valide
+};
+
+
+
+
+
+
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  // useparams recuperer l:id du produit
+  const id = url.searchParams.get("id");
+  const objectURL = host + id;
+  const postUrl = host + "order/";
+
+
+  let product = {};
+  try {
+    const response = await fetch(objectURL);
+    const data = await response.json();
+    product = data;
+  } catch (error) {
+    console.error('Erreur lors de la récupération des données :', error);
+  }
+
+
+  if (validateForm()) {
+
+    try {
+      const response = await fetch(postUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ formData, product }),
+        });
+
+        const data = await response.json();
+        console.log(data);
+      //  if case 3 coché ne pas rediriger vers paiment mais vers page de confirmation avec recontact conseiller
+        formData.clear();
+      // if tout est bon rediriger vers page de paiement 
+        let confirmationUrl = "./confirmation.html?id=" + id;
+        window.location.href = confirmationUrl;
+
+      }
+
+      catch (error) {
+        console.error('Erreur lors de l\'envoi des données au backend:', error);
+      }
+
+  }
+  else {
+    // Il y a des erreurs dans le formulaire, ne procédez pas à l'envoi
+    console.log('Le formulaire contient des erreurs. Veuillez les corriger.');
+    return; 
+  }
+};
+
+
+
 
 
 
@@ -133,7 +345,7 @@ const StageForm = () => {
 //////////////////////////////////////////////////
 ///////////////////////////////////////
 ////////////////////////////////
-///////////////////////
+////////////////////////
 //////////////
 ////////
 /////

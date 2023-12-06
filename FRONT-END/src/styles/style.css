@@ -14,9 +14,10 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(to right, rgb(7, 199, 247), rgb(241, 113, 8));
+  background: linear-gradient(to bottom, rgb(8, 0, 108), rgb(241, 113, 8));
   padding: 20px;
   padding-bottom: 80px;
+  padding-top: 30px;
   height: 500px;
 }
 .banner__content {
@@ -24,19 +25,48 @@ body {
   flex-direction: column;
   align-items: center;
   margin-right: 100px;
+  line-height: 0%;
+  z-index: 1;
 }
-.banner__content h1 {
+.banner__content img {
+  width: 200px;
+}
+.banner__content__texte1 {
+  color: whitesmoke;
+  font-size: 35px;
+  font-weight: 600;
+}
+.banner__content__texte2 {
+  color: whitesmoke;
+  font-size: 20px;
+}
+.banner__content__texte3 {
+  color: rgb(255, 118, 6);
+  font-size: 15px;
+}
+.banner__content__line {
+  position: absolute;
+  top: 456px;
+  z-index: 0;
+  width: 100%;
+  height: 59px;
+  background-color: black;
+  display: flex;
+  align-items: center;
+}
+.banner__content__line p {
   color: white;
-  font-size: 32px;
-  margin-bottom: 20px;
+  margin-left: 53%;
+  font-size: 12px;
 }
 .banner__content .search-bar {
   display: flex;
   align-items: center;
-  width: 300px;
+  width: 400px;
   background-color: white;
   border-radius: 20px;
   padding: 10px;
+  margin: 20px;
 }
 .banner__content .search-bar input[type=text] {
   flex: 1;
@@ -58,9 +88,9 @@ body {
 .banner__content .search-bar button:hover {
   background-color: #d8690a;
 }
-.banner img {
-  max-width: 100%;
-  height: auto;
+.banner .Map {
+  width: 270px;
+  margin-bottom: 120px;
 }
 
 .section-home {
@@ -359,15 +389,16 @@ body {
 }
 
 header {
-  background: linear-gradient(to right, rgb(7, 199, 247), rgb(241, 113, 8));
+  background-color: black;
   padding: 20px 40px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   color: white;
   font-family: Arial, sans-serif;
-  height: 15px;
+  height: 25px;
   /* Hauteur encore plus réduite */
+  background: linear-gradient(to bottom, rgb(0, 0, 0) 1%, rgb(8, 0, 108) 99%);
 }
 header .logo img {
   max-width: 100px;
@@ -378,26 +409,44 @@ header .navbar__links {
   color: white;
   text-decoration: none;
   transition: color 0.3s;
-  margin-right: 70px;
+  margin-right: 50px;
   /* Espace accru entre les liens */
-  font-size: 14px;
+  font-size: 16px;
   /* Taille de police réduite */
-  font-weight: bold;
 }
 header .navbar__links:hover {
   color: #f58220;
 }
 header .login button {
-  background: linear-gradient(to right, #f58220, #ff6b00);
+  background: linear-gradient(to right, rgb(10, 1, 51), rgb(214, 99, 4));
   color: white;
   border: none;
   padding: 10px 20px;
   border-radius: 5px;
+  font-size: 16px;
   cursor: pointer;
   transition: background-color 0.3s;
 }
 header .login button:hover {
   background: #ff6b00;
+}
+header .infos {
+  line-height: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+header .infos__phone {
+  text-align: center;
+  font-size: 17px;
+  font-weight: bold;
+  margin: 0;
+  color: rgb(29, 29, 31);
+}
+header .infos__dispo {
+  font-size: 12px;
+  text-align: center;
 }
 
 .stages {
