@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import validator from 'validator';
 
+
 import NewPermis from "../assets/newPermis-1.png";
 import NewPermisVerso from "../assets/newPermis-2.png";
 import OldPermis from "../assets/oldPermis.png";
@@ -54,6 +55,8 @@ const StageForm = () => {
   const [stageVolontaire4, setStageVolontaire4] = useState(false);
   const [newPermis, setNewPermis] = useState(false);
   const [oldPermis, setOldPermis] = useState(false);
+
+
 
   const host = "http://localhost:3000/api/products/";
 
@@ -274,7 +277,6 @@ const validateForm = () => {
 
 
 
-0
 
 
   return Object.keys(errors).length === 0; // Si l'objet errors est vide, le formulaire est valide
@@ -283,15 +285,17 @@ const validateForm = () => {
 
 
 
-
-
 const handleSubmit = async (e) => {
   e.preventDefault();
   // useparams recuperer l:id du produit
+
+  
+  const str = window.location;
+  const url = new URL(str);
   const id = url.searchParams.get("id");
   const objectURL = host + id;
   const postUrl = host + "order/";
-
+ 
 
   let product = {};
   try {
@@ -316,6 +320,8 @@ const handleSubmit = async (e) => {
 
         const data = await response.json();
         console.log(data);
+
+        
       //  if case 3 coché ne pas rediriger vers paiment mais vers page de confirmation avec recontact conseiller
         formData.clear();
       // if tout est bon rediriger vers page de paiement 
@@ -335,6 +341,12 @@ const handleSubmit = async (e) => {
     return; 
   }
 };
+
+
+
+
+ 
+
 
 
 
@@ -359,7 +371,7 @@ const handleSubmit = async (e) => {
 
   return (
 
-<div>
+
     <form className="stage-form" onSubmit={handleSubmit}>
 
       <h2>Mes coordonnées</h2>
@@ -461,11 +473,10 @@ const handleSubmit = async (e) => {
 
 
 
-      <div>
-        <h2>Mon stage</h2>
-        <div>
-          
-          <div className="stage-form__field-stage">
+
+          <h2>Mon stage</h2>
+
+          <div className="stage-form__field stage-form__field--stage">
             <input
               type="checkbox"
               id="stageVolontaire1"
@@ -477,11 +488,10 @@ const handleSubmit = async (e) => {
           </div>
 
           {stageVolontaire1 && (
-            <div>
+            <div className="stage-form__field-hidden">
               
-              <div className="stage-form__field-stage">
-                <label htmlFor="champNombre">Je déclare le nombre de points qu'il me restent sur le Fichier National du Permis de Conduire</label>
-                <input
+              <div className="stage-form__field stage-form__field--stage">
+              <input
                   type="number"
                   id="champNombre"
                   name="champNombre"
@@ -490,10 +500,11 @@ const handleSubmit = async (e) => {
                   min="0"
                   max="12"
                 />
+                <label htmlFor="champNombre">Je déclare le nombre de points qu'il me restent sur le Fichier National du Permis de Conduire</label>
               </div>
 
 
-              <div className="stage-form__field-stage">
+              <div className="stage-form__field stage-form__field--stage">
                 <input
                   type="checkbox"
                   id="stageVolontaire"
@@ -505,7 +516,7 @@ const handleSubmit = async (e) => {
             </div>
           )}
 
-          <div className="stage-form__field-stage">
+          <div className="stage-form__field stage-form__field--stage">
             <input
               type="checkbox"
               id="stageVolontaire2"
@@ -517,24 +528,24 @@ const handleSubmit = async (e) => {
           </div>
 
           {stageVolontaire2 && (
-            <div>
+            <div className="stage-form__field-hidden stage-form__field-hidden--cas2">
               
-              <div className="stage-form__field-stage">
+              <div className="stage-form__field">
                 <label htmlFor="nom">Lieu de l'infraction :</label>
                 <input type="text" id="nom" name="nom" value={formData.nom} onChange={handleChange} />
               </div>
 
-              <div className="stage-form__field-stage">
+              <div className="stage-form__field">
                 <label htmlFor="dateNaissance">Date de l'infraction :</label>
                 <input type="date" id="dateNaissance" name="dateNaissance" value={formData.dateNaissance} onChange={handleChange} />
               </div>
 
-              <div className="stage-form__field-stage">
+              <div className="stage-form__field">
                 <label htmlFor="heure">Heure de l'infraction :</label>
                 <input type="text" id="heure" name="heure" value={"12h30"} onChange={handleChange} />
               </div>
 
-              <div className="stage-form__field-stage">
+              <div className="stage-form__field">
                 <label htmlFor="prenom">Motif de l'infraction :</label>
                 <select id="civilite" name="civilite" value={formData.civilite} onChange={handleChange}>
                   <option value="">Sélectionner</option>
@@ -547,7 +558,7 @@ const handleSubmit = async (e) => {
                 </select>
               </div>
 
-              <div className="stage-form__field-stage">
+              <div className="stage-form__field">
                 <label htmlFor="dateNaissance">Solde de points :</label>
                 <input
                   type="number"
@@ -560,7 +571,7 @@ const handleSubmit = async (e) => {
                 />
               </div>
 
-              <div className="stage-form__field-stage">
+              <div className="stage-form__field">
                 <label htmlFor="dateNaissance">Date de réception de la lettre 48N * :</label>
                 <input type="date" id="dateNaissance" name="dateNaissance" value={formData.dateNaissance} onChange={handleChange} />
               </div>
@@ -568,7 +579,7 @@ const handleSubmit = async (e) => {
             </div>
           )}
 
-          <div className="stage-form__field-stage">
+          <div className="stage-form__field stage-form__field--stage">
             <input
               type="checkbox"
               id="stageVolontaire3"
@@ -580,12 +591,12 @@ const handleSubmit = async (e) => {
           </div>
 
           {stageVolontaire3 && (
-            <div>
+            <div className="stage-form__field__warning-text">
               <p>Vous avez choisi une inscription au cas de stage n°3. Les stages en cas 3 ne permettent pas de récupérer des points. </p>
             </div>
           )}
 
-          <div className="stage-form__field-stage">
+          <div className="stage-form__field stage-form__field--stage">
             <input
               type="checkbox"
               id="stageVolontaire4"
@@ -597,14 +608,14 @@ const handleSubmit = async (e) => {
           </div>
 
           {stageVolontaire4 && (
-            <div>
+            <div className="stage-form__field__warning-text">
               <p>Vous êtes dans l'obligation de suivre un stage de sensibilitation à la sécurité routière dans le cadre d'une peine complémentaire. Les stages en cas 4 ne permettent pas de récupérer des points.</p>
             </div>
           )}
 
-        </div>
 
-      </div>
+
+
 
 
 
@@ -618,10 +629,11 @@ const handleSubmit = async (e) => {
 
 
       {(stageVolontaire1 || stageVolontaire2) && (
-      <div>
-        <h2>Mon permis de conduire</h2>
+      <div className="stage-form__permis">
 
-          <div className="stage-form__field-stage">
+          <h2>Mon permis de conduire</h2>
+
+          <div className="stage-form__field stage-form__field--stage">
             <input
               type="checkbox"
               id="newPermis"
@@ -631,7 +643,8 @@ const handleSubmit = async (e) => {
             />
             <label htmlFor="newPermis">Nouveau format</label>
           </div>
-          <div className="stage-form__field-stage">
+
+          <div className="stage-form__field stage-form__field--stage">
             <input
               type="checkbox"
               id="oldPermis"
@@ -644,14 +657,16 @@ const handleSubmit = async (e) => {
 
           {newPermis && (
             <div>
+
               <img src={NewPermis} alt="nouveau-permis-img" />
               <img src={NewPermisVerso} alt="nouveau-permis-img" />
-              <div className="stage-form__field-permis" id="delivrance">
+
+              <div className="stage-form__permis__field stage-form__permis__field--newpermis-date-delivrance">
                 <label htmlFor="dateNaissance">Permis délivré le * :</label>
                 <input type="date" id="dateNaissance" name="dateNaissance" value={formData.dateNaissance} onChange={handleChange} />
               </div>
 
-              <div className="stage-form__field-permis" id="ville">
+              <div className="stage-form__permis__field stage-form__permis__field--newpermis-ville">
                 <label htmlFor="villee">Ville :</label>
                 <input
                   type="text"
@@ -661,10 +676,10 @@ const handleSubmit = async (e) => {
                 />
               </div>
 
-              <div className="stage-form__field-permis">
+              <div className="stage-form__permis__field stage-form__permis__field--newpermis-number">
                 <label htmlFor="adresse">Numéro de permis :</label>
                 <input
-                  type="number"
+                  type="text"
                   id="adresse"
                   name="adresse"
                   value={autreCoordonnees.adresse}
@@ -672,7 +687,7 @@ const handleSubmit = async (e) => {
                 />
               </div>
 
-              <div className="stage-form__field-permis">
+              <div className="stage-form__permis__field stage-form__permis__field--newpermis-olddate">
                 <label htmlFor="dateNaissance">Date la plus ancienne * :</label>
                 <input type="date" id="dateNaissance" name="dateNaissance" value={formData.dateNaissance} onChange={handleChange} />
               </div>
@@ -684,14 +699,15 @@ const handleSubmit = async (e) => {
 
           {oldPermis && (
             <div>
+
               <img src={OldPermis} alt="ancien-permis-img" />
 
-              <div className="stage-form__field">
+              <div className="stage-form__permis__field stage-form__permis__field--oldpermis-date-delivrance">
                 <label htmlFor="dateNaissance">Permis délivré le * :</label>
                 <input type="date" id="dateNaissance" name="dateNaissance" value={formData.dateNaissance} onChange={handleChange} />
               </div>
 
-              <div className="stage-form__field">
+              <div className="stage-form__permis__field stage-form__permis__field--oldpermis-ville">
                 <label htmlFor="villee">Ville :</label>
                 <input
                   type="text"
@@ -702,7 +718,7 @@ const handleSubmit = async (e) => {
                 />
               </div>
 
-              <div className="stage-form__field">
+              <div className="stage-form__permis__field stage-form__permis__field--oldpermis-number">
                 <label htmlFor="adresse">Numéro de permis :</label>
                 <input
                   type="number"
@@ -710,19 +726,17 @@ const handleSubmit = async (e) => {
                   name="adresse"
                   value={autreCoordonnees.adresse}
                   onChange={handleAutreCoordonneesChange}
-                />
+                />  
               </div>
 
-              <div className="stage-form__field">
+
+              <div className="stage-form__permis__field stage-form__permis__field--oldpermis-olddate">
                 <label htmlFor="dateNaissance">Date la plus ancienne * :</label>
                 <input type="date" id="dateNaissance" name="dateNaissance" value={formData.dateNaissance} onChange={handleChange} />
               </div>
 
-
             </div>
           )}
-
-
       </div>
       )}
 
@@ -734,7 +748,7 @@ const handleSubmit = async (e) => {
 
 
 
-      <div className="stage-form__field">
+      <div className="stage-form__submit">
         <button type="submit">Soumettre</button>
       </div>
 
@@ -744,12 +758,6 @@ const handleSubmit = async (e) => {
 
 
     </form>
-
-
-
-
-
-</div>
 
   );
 };

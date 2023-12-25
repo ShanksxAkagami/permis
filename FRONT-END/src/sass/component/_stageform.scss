@@ -1,78 +1,143 @@
+$couleur-bleu-nuit: #001f3f;
+$couleur-orange: #FFA500;
+$border-radius: 5px;
+
 .stage-form {
-  max-width: 500px; /* Limite la largeur du formulaire pour qu'il ne prenne pas toute la largeur de l'écran */
-  margin: 0 auto; /* Centre le formulaire horizontalement */
-  padding: 20px;
-  background-color: #f9f9f9;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 
+  width: 40%;
+  border: 0.5px solid rgb(209, 207, 207);
+  color: grey;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 
+  h2 {
+    color: black;
+  }
 
-  /* Styles pour chaque champ de formulaire */
   &__field {
+    margin-bottom: 8px;
     display: flex;
     flex-direction: column;
-    margin-bottom: 20px;
+    width: 90%;
+
     
+    label {
+      font-size: 14px;
+    }
 
+    input,
+    select {
+      padding: 10px;
+      border: 1px solid gray;
+      border-radius: $border-radius;
+      margin-top: 5px;
+      font-size: 12px;
+      box-shadow: 0px 0px 5px rgb(191, 191, 191);
 
+      &:focus {
+        outline: none;
+        border-color: $couleur-orange;
+        box-shadow: 0 0 5px rgba(255, 165, 0, 0.5);
+      }
+    }
+
+    &--stage {
+      flex-direction: initial;
+      margin-bottom: 20px;
+      align-items: center;
+      input {
+        box-shadow: 0px 0px 0px;
+        margin-right: 12px;
+      }
+    }
+
+    &__warning-text {
+      color: red;
+      font-size: 14px;
+      width: 90%;
+      border: 0.5px solid rgb(209, 207, 207);
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+      margin-bottom: 20px;
+      text-align: center;
+    }
   }
 
-  &__field-stage {
-    display: flex;
 
-  }
 
-  &__field-permis {
+
+  &__field-hidden {
     display: flex;
+    align-items: center;
     flex-direction: column;
-
-
+    width: 90%;
+    border: 0.5px solid rgb(209, 207, 207);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    padding-top: 20px;
+    &--cas2 {
+      padding-bottom: 20px;
+    }
   }
 
-  #delivrance {
-    position: relative;
-    bottom: 480px;
-    left: 150px;
-    width: 150px;
+  &__permis {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 500px;
 
-  }
-  #ville {
-    position: relative;
-    bottom: 522px;
-    left: 310px;
-    width: 150px;
+    border: 0.5px solid rgb(209, 207, 207);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 
+    img {
+      width: 100%;
+    }
 
-  }
-
-
-
-  img {
-    width: 100%;
-
-  }
-
-
-
-
-
-
-
-
-
-  /* Styles pour le bouton Soumettre */
-  button {
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
-
-    &:hover {
-      background-color: #0056b3;
+    &__field {
+      display: flex;
+      flex-direction: column;
+      width: 150px;
+      &--newpermis-date-delivrance {
+        position: relative;
+        bottom: 469px;
+        left: 137px;
+      }
+      &--newpermis-ville {
+        position: relative;
+        bottom: 512px;
+        left: 307px;
+      }
+      &--newpermis-number {
+        position: relative;
+        bottom: 480px;
+        left: 150px;
+      }
+      &--newpermis-olddate {
+        position: relative;
+        bottom: 480px;
+        left: 150px;
+      }
+      &--oldpermis-date-delivrance {
+        position: relative;
+        bottom: 469px;
+        left: 137px;
+      }
+      &--oldpermis-ville {
+        position: relative;
+        bottom: 512px;
+        left: 307px;
+      }
+      &--oldpermis-number {
+        position: relative;
+        bottom: 480px;
+        left: 150px;
+      }
+      &--oldpermis-olddate {
+        position: relative;
+        bottom: 480px;
+        left: 150px;
+      }
     }
   }
 
@@ -80,5 +145,34 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+  &__submit {
+    margin-top: 20px;
+
+    button {
+      background-color: $couleur-orange;
+      color: white;
+      padding: 10px;
+      border: none;
+      border-radius: $border-radius;
+      cursor: pointer;
+      font-size: 16px;
+
+      &:hover {
+        background-color: darken($couleur-orange, 10%);
+      }
+    }
+  }
 }
+
 
