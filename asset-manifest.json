@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/permis/static/css/main.61552204.css",
+    "main.js": "/permis/static/js/main.c0fb938e.js",
+    "static/media/111.png": "/permis/static/media/111.13d5c485e1bd484163fe.png",
+    "static/media/yyy.png": "/permis/static/media/yyy.0eb8c680b3b7eca6056d.png",
+    "static/media/admin emote.png": "/permis/static/media/admin emote.4324b1241ff2b3bbd3ea.png",
+    "static/media/emote-client-satisfait.png": "/permis/static/media/emote-client-satisfait.360ff112e207b6fbdd43.png",
+    "static/media/appel-emote.png": "/permis/static/media/appel-emote.cbfd22e7a9d279494864.png",
+    "static/media/newPermis-1.png": "/permis/static/media/newPermis-1.03453b8e83017255cf93.png",
+    "static/media/payement emote.png": "/permis/static/media/payement emote.729ba037b97f13b99e93.png",
+    "static/media/newPermis-2.png": "/permis/static/media/newPermis-2.55335cf3eb7f232b9ee9.png",
+    "static/media/oldPermis.png": "/permis/static/media/oldPermis.61a67b29aba1f8b11d1e.png",
+    "static/media/map.png": "/permis/static/media/map.6dd34f70c547df8e5b44.png",
+    "static/media/logo.png": "/permis/static/media/logo.815ef4f1260921b83ac2.png",
+    "index.html": "/permis/index.html",
+    "main.61552204.css.map": "/permis/static/css/main.61552204.css.map",
+    "main.c0fb938e.js.map": "/permis/static/js/main.c0fb938e.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.61552204.css",
+    "static/js/main.c0fb938e.js"
+  ]
+}
