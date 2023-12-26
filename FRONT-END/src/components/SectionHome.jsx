@@ -1,13 +1,19 @@
 import React from 'react';
 
-import Stage from "../assets/section-stage.png";
+import Stage from "../assets/111.png";
+import Permis from "../assets/yyy.png";
+
+import PayEmote from "../assets/payement emote.png";
+import CallEmote from "../assets/appel-emote.png";
+import ClientEmote from "../assets/emote-client-satisfait.png";
+import StageEmote from "../assets/admin emote.png";
 
 const SectionHome = () => {
   return (
     <div className="section-home">
       <div className="section-home__info">
         <div className="section-home__info__card">
-          <i class="fa-solid fa-face-smile"></i>
+          <img src={ClientEmote} alt="paiement" />
           <h3>98% Satisfaits</h3>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut aliquam
@@ -16,7 +22,7 @@ const SectionHome = () => {
           </p>
         </div>
         <div className="section-home__info__card">
-          <i class="fas fa-medal"></i>
+        <img src={StageEmote} alt="paiement" />
           <h3>Stages agréés</h3>
           <p>
             Sed vehicula uddrna quis ultriddsdcies fermedssntum. Mauris maximus felis
@@ -25,7 +31,7 @@ const SectionHome = () => {
           </p>
         </div>
         <div className="section-home__info__card">
-          <i class="fas fa-credit-card"></i>
+        <img src={PayEmote} alt="paiement" />
           <h3>Paiement sécurisé</h3>
           <p>
             Fusce in ipsum sagittis, consectetur massa vitae, vulputate lectus.
@@ -34,7 +40,7 @@ const SectionHome = () => {
           </p>
         </div>
         <div className="section-home__info__card">
-          <i class="fas fa-phone"></i>
+        <img src={CallEmote} alt="paiement" />
           <h3>Service d’experts</h3>
           <p>
             Nullam sit amet turpis efficitur, vestibulum ipsum ac, aliquet
@@ -62,14 +68,13 @@ const SectionHome = () => {
             <span>Acheter un stage</span>
           </button>
         </div>
-        <div className="section-home__stages__img">
           <img src={Stage} alt="stages" />
-        </div>
       </div>
 
 
 
       <div className="section-home__permis">
+        <img src={Permis} alt="stages" />
         <div className="section-home__permis__infos">
           <h2>Permis a points</h2>
           <p>
