@@ -76,7 +76,7 @@ const Slots = () => {
               <p className="ville">{stage.ville}</p>
               <p className="adresse">{stage.adresse}</p>
               <p className="numero">N° stage Préfectoral : {stage.numeroPrefectoral}</p>
-              <a href="#">+ d'info</a>
+              <a href="/home">+ d'info</a>
             </div>
             <div className="slots__stages__product__dates">
               <p className="date">{stage.date}</p>

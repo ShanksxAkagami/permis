@@ -23,7 +23,7 @@ function App() {
         <Router>
             <Header />
             <Routes>
-                <Route index element={<Home />} />
+                <Route path="home" element={<Home />} />
                 <Route path="stages" element={<Stages />} />
                 <Route path="infractions" element={<Stages />} />
                 <Route path="permisapoints" element={<Stages />} />
