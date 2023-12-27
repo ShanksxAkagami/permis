@@ -18,24 +18,34 @@ header {
     }
   }
 
+
+
   .navbar {
-    
+    display: flex;
+    align-items: center;
+
     &__links {
-      color: white;
+
+      font-size: 14px; /* Taille de police réduite */
       text-decoration: none;
-      transition: color 0.3s;
-      margin-right: 50px; /* Espace accru entre les liens */
-      font-size: 16px; /* Taille de police réduite */
-      
-      &:hover {
-        color: $orange;
-      }
+
+      box-shadow: inset 0 0 0 0 $orange;
+      color: white;
+      padding: 20px;
+
+      transition: color .3s ease-in-out, box-shadow .3s ease-in-out;
+        &:hover {
+          color: white;
+          box-shadow: inset 300px 0 0 0 $orange;
+        }
     }
+    
   }
 
   .login {
+    margin-left: 170px;
     button {
-      background: linear-gradient(to right, rgb(10, 1, 51), rgb(214, 99, 4));
+      background: $orange;
       color: white;
       border: none;
       padding: 10px 20px;
@@ -55,16 +65,18 @@ display: flex;
 flex-direction: column;
 align-items: center;
 justify-content: center;
+
     &__phone {
       text-align: center;
       font-size: 17px;
       font-weight: bold;
       margin: 0;
-      color: rgb(29, 29, 31);
+      color: $orange;
     }
     &__dispo {
       font-size: 12px;
       text-align: center;
+      color: white;
   
       
     }

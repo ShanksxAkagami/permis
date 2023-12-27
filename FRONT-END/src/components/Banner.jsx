@@ -26,17 +26,18 @@ const Banner = () => {
           <input type="text" placeholder="Chercher un lieu ou un département" value={postalCode} onChange={(e) => setPostalCode(e.target.value)} />
           <Link to={`/stages?postalCode=${postalCode}`}>
           <button type="button">
-            <span role="img" aria-label="Rechercher">
-              🔍
-            </span>
+            <i class="fa-solid fa-magnifying-glass"></i>
           </button>
           </Link>
         </div>
 
       </div>
+
       <img src={Map} alt="map-iledefrance" className="Map" />
-      <div className="banner__content__line">       
-      <p className="line-text">* Stage volontaire de récupération de points, pour permis probatoire, composition pénale, peine complémentaire.</p>
+      <div className="banner__line">
+        <div className="banner__line__content">       
+        <p className="line-text">* Stage volontaire de récupération de points, pour permis probatoire, composition pénale, peine complémentaire.</p>
+        </div>
       </div>
 
     </div>
