@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/permis/static/css/main.61552204.css",
-    "main.js": "/permis/static/js/main.2fe99666.js",
+    "main.css": "/permis/static/css/main.e8d7aee7.css",
+    "main.js": "/permis/static/js/main.da0d3b28.js",
     "static/media/111.png": "/permis/static/media/111.13d5c485e1bd484163fe.png",
     "static/media/yyy.png": "/permis/static/media/yyy.0eb8c680b3b7eca6056d.png",
     "static/media/admin emote.png": "/permis/static/media/admin emote.4324b1241ff2b3bbd3ea.png",
@@ -12,13 +12,14 @@
     "static/media/newPermis-2.png": "/permis/static/media/newPermis-2.55335cf3eb7f232b9ee9.png",
     "static/media/oldPermis.png": "/permis/static/media/oldPermis.61a67b29aba1f8b11d1e.png",
     "static/media/map.png": "/permis/static/media/map.6dd34f70c547df8e5b44.png",
-    "static/media/logo.png": "/permis/static/media/logo.815ef4f1260921b83ac2.png",
+    "static/media/capturetest.PNG": "/permis/static/media/capturetest.b276980cc0f6347b2fe0.PNG",
+    "static/media/logo.png": "/permis/static/media/logo.705799abdaa9b3728707.png",
     "index.html": "/permis/index.html",
-    "main.61552204.css.map": "/permis/static/css/main.61552204.css.map",
-    "main.2fe99666.js.map": "/permis/static/js/main.2fe99666.js.map"
+    "main.e8d7aee7.css.map": "/permis/static/css/main.e8d7aee7.css.map",
+    "main.da0d3b28.js.map": "/permis/static/js/main.da0d3b28.js.map"
   },
   "entrypoints": [
-    "static/css/main.61552204.css",
-    "static/js/main.2fe99666.js"
+    "static/css/main.e8d7aee7.css",
+    "static/js/main.da0d3b28.js"
   ]
 }
