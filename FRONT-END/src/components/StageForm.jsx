@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
-import validator from 'validator';
 
+import validator from 'validator';
 
 import NewPermis from "../assets/newPermis-1.png";
 import NewPermisVerso from "../assets/newPermis-2.png";
 import OldPermis from "../assets/oldPermis.png";
+
+
+
+
 
 /////////////////////////////////
 
@@ -15,10 +19,16 @@ const StageForm = () => {
 ///////////////////////////////////
 
 
-  // State pour stocker les valeurs du formulaire
+
+
+
+const host = "http://localhost:3000/api/products/";
+
   const listePays = [
     'France',
     'Allemagne',
+    'Algérie',
+    'Almeria',
     'Espagne',
     'Italie',
     'Royaume-Uni',
@@ -26,6 +36,8 @@ const StageForm = () => {
     'Canada',
     // Ajoutez d'autres pays à la liste selon vos besoins
   ];
+
+  const [paysSuggestions, setPaysSuggestions] = useState([]);
   
   const [formData, setFormData] = useState({
     civilite: '',
@@ -38,96 +50,97 @@ const StageForm = () => {
     adresseComplete: '',
     codePostal: '',
     email: '',
-    telephone: ''
+    telephone: '',
+    stageVolontaire1: false,
+    stageVolontaire2: false,
+    stageVolontaire3: false,
+    stageVolontaire4: false,
+    newPermis: false,
+    oldPermis: false
   });
-
-  const [autreCoordonnees, setAutreCoordonnees] = useState({
-    adresse: '',
-    codePostal: '',
-    ville: ''
-  });
-
-  const [paysSuggestions, setPaysSuggestions] = useState([]);
-
-  const [stageVolontaire1, setStageVolontaire1] = useState(false);
-  const [stageVolontaire2, setStageVolontaire2] = useState(false);
-  const [stageVolontaire3, setStageVolontaire3] = useState(false);
-  const [stageVolontaire4, setStageVolontaire4] = useState(false);
-  const [newPermis, setNewPermis] = useState(false);
-  const [oldPermis, setOldPermis] = useState(false);
-
-
-
-  const host = "http://localhost:3000/api/products/";
-
 
 
 //////////////////////////////////
 
 
-    const handleChange = (event) => {
-      const { name, value } = event.target;
-      setFormData({
-        ...formData,
-        [name]: value
-      });
-  
-      // Filtrer les suggestions de pays
-      const suggestions = listePays.filter(pays => pays.toLowerCase().includes(value.toLowerCase()));
-      setPaysSuggestions(suggestions);
-    };
+const handleChange = (e) => {
+  const { name, type, value, checked } = e.target;
+  // Si le champ est de type checkbox
+  if (type === 'checkbox') {
+    setFormData((prevData) => {
+      // Si c'est une case de stageVolontaire, décochez les autres
+      if (name.startsWith('stageVolontaire')) {
+        const updatedFormData = { ...prevData };
+        for (const key in updatedFormData) {
+          if (key.startsWith('stageVolontaire')) {
+            updatedFormData[key] = false;
+          }
+        }
+        updatedFormData[name] = checked;
+        return updatedFormData;
+      }
 
-    const handleSelectPays = (pays) => {
-      setFormData({
-        ...formData,
-        paysNaissance: pays
-      });
-      // Effacer les suggestions après avoir sélectionné un pays
-      setPaysSuggestions([]);
-    };
+      // Si c'est une case de permis, décochez l'autre
+      if (name === 'newPermis' && checked) {
+        return {
+          ...prevData,
+          newPermis: true,
+          oldPermis: false,
+        };
+      }
 
-    const handleStageVolontaire1 = (event) => {
-      setStageVolontaire1(event.target.checked);
-      setStageVolontaire2(false); setStageVolontaire3(false); setStageVolontaire4(false);
-    };
-    const handleStageVolontaire2 = (event) => {
-      setStageVolontaire2(event.target.checked);
-      setStageVolontaire1(false); setStageVolontaire3(false); setStageVolontaire4(false);
-      //ne pas oublier de set la donnée des sous formulaire en false/null quand on change d'inpute, comme : effacer la donnée de "Je ne connais pas mon solde"
-    };
-    const handleStageVolontaire3 = (event) => {
-      setStageVolontaire3(event.target.checked);
-      setStageVolontaire1(false); setStageVolontaire2(false); setStageVolontaire4(false);
-      //ne pas oublier de set la donnée des sous formulaire en false/null quand on change d'inpute, comme : effacer la donnée de "Je ne connais pas mon solde"
-    };
-    const handleStageVolontaire4 = (event) => {
-      setStageVolontaire4(event.target.checked);
-      setStageVolontaire1(false); setStageVolontaire2(false); setStageVolontaire3(false);
-      //ne pas oublier de set la donnée des sous formulaire en false/null quand on change d'inpute, comme : effacer la donnée de "Je ne connais pas mon solde"
-    };
+      if (name === 'oldPermis' && checked) {
+        return {
+          ...prevData,
+          newPermis: false,
+          oldPermis: true,
+        };
+      }
 
-    const handleAutreCoordonneesChange = (event) => {
-      const { name, value } = event.target;
-      setAutreCoordonnees({
-        ...autreCoordonnees,
-        [name]: value
-      });
-    };
+      // Pour d'autres types de checkbox, mettez à jour directement
+      return {
+        ...prevData,
+        [name]: checked,
+      };
+    });
+  } 
+  else if (name === 'paysNaissance') {
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value
+    }));
+    const suggestions = listePays.filter(pays => pays.toLowerCase().startsWith(value.toLowerCase()));
+    setPaysSuggestions(suggestions);
+  }
+  else {
+    // Si ce n'est pas une case de checkbox, mettez à jour directement
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value
+    }));
+  }
+};
 
-    const handleNewPermis = (event) => {
-      setNewPermis(event.target.checked);
-      setOldPermis(false);
-    };
-    const handleOldPermis = (event) => {
-      setOldPermis(event.target.checked);
-      setNewPermis(false);
-    };
+
+const handleSelectPays = (pays) => {
+  setFormData({
+    ...formData,
+    paysNaissance: pays
+  });
+  // Effacer les suggestions après avoir sélectionné un pays
+  setPaysSuggestions([]);
+};
+    
+
+
+
 
 
 
 /////////////////////////////////////
 /////////////////
 /////////////
+
 
 
 const [errors, setErrors] = useState({});
@@ -285,6 +298,11 @@ const validateForm = () => {
 
 
 
+//////////////////////////
+////////
+
+
+
 const handleSubmit = async (e) => {
   e.preventDefault();
   // useparams recuperer l:id du produit
@@ -351,9 +369,6 @@ const handleSubmit = async (e) => {
 
 
 
-
-
-
 //////////////////////////////////////////////////
 ///////////////////////////////////////
 ////////////////////////////////
@@ -372,13 +387,16 @@ const handleSubmit = async (e) => {
   return (
 
 
+
     <form className="stage-form" onSubmit={handleSubmit}>
+
+
 
       <h2>Mes coordonnées</h2>
 
       <div className="stage-form__field">
         <label htmlFor="civilite">Civilité :</label>
-        <select id="civilite" name="civilite" value={formData.civilite} onChange={handleChange}>
+        <select id="civilite" name="civilite" onChange={handleChange}>
           <option value="">Sélectionner</option>
           <option value="Mme">Mme</option>
           <option value="Mlle">Mlle</option>
@@ -388,18 +406,18 @@ const handleSubmit = async (e) => {
 
       <div className="stage-form__field">
         <label htmlFor="nom">Nom :</label>
-        <input type="text" id="nom" name="nom" value={formData.nom} onChange={handleChange} />
+        <input type="text" id="nom" name="nom" onChange={handleChange} />
       </div>
 
       <div className="stage-form__field">
         <label htmlFor="prenom">Prénom :</label>
-        <input type="text" id="prenom" name="prenom" value={formData.prenom} onChange={handleChange} />
+        <input type="text" id="prenom" name="prenom" onChange={handleChange} />
       </div>
 
 
       <div className="stage-form__field">
         <label htmlFor="dateNaissance">Date de naissance :</label>
-        <input type="date" id="dateNaissance" name="dateNaissance" value={formData.dateNaissance} onChange={handleChange} />
+        <input type="date" id="dateNaissance" name="dateNaissance" onChange={handleChange} />
       </div>
 
       <div className="stage-form__field">
@@ -412,7 +430,7 @@ const handleSubmit = async (e) => {
           onChange={handleChange}
         />
         {paysSuggestions.length > 0 && (
-          <ul className="pays-suggestions">
+          <ul className="stage-form__field__pays">
             {paysSuggestions.map((pays, index) => (
               <li key={index} onClick={() => handleSelectPays(pays)}>{pays}</li>
             ))}
@@ -421,38 +439,38 @@ const handleSubmit = async (e) => {
       </div>
 
       <div className="stage-form__field">
-        <label htmlFor="paysNaissance">Département de naissance :</label>
-        <input type="text" id="depNaissance" name="depNaissance" value={formData.depNaissance} onChange={handleChange} />
+        <label htmlFor="depNaissance">Département de naissance :</label>
+        <input type="text" id="depNaissance" name="depNaissance" onChange={handleChange} />
       </div>
 
       <div className="stage-form__field">
         <label htmlFor="villeNaissance">Ville de naissance :</label>
-        <input type="text" id="villeNaissance" name="villeNaissance" value={formData.villeNaissance} onChange={handleChange} />
+        <input type="text" id="villeNaissance" name="villeNaissance" onChange={handleChange} />
       </div>
 
       <div className="stage-form__field">
         <label htmlFor="adresseComplete">Adresse complète :</label>
-        <input type="text" id="adresseComplete" name="adresseComplete" value={formData.adresseComplete} onChange={handleChange} />
+        <input type="text" id="adresseComplete" name="adresseComplete" onChange={handleChange} />
       </div>
 
       <div className="stage-form__field">
-        <label htmlFor="adresseComplete">Complément adresse :</label>
-        <input type="text" id="complAdresse" name="complAdresse" value={formData.complAdresse} onChange={handleChange} />
+        <label htmlFor="complComplete">Complément adresse :</label>
+        <input type="text" id="complAdresse" name="complAdresse" onChange={handleChange} />
       </div>
 
       <div className="stage-form__field">
         <label htmlFor="codePostal">Code postal :</label>
-        <input type="text" id="codePostal" name="codePostal" value={formData.codePostal} onChange={handleChange} />
+        <input type="text" id="codePostal" name="codePostal" onChange={handleChange} />
       </div>
 
       <div className="stage-form__field">
         <label htmlFor="email">Adresse e-mail :</label>
-        <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} />
+        <input type="email" id="email" name="email" onChange={handleChange} />
       </div>
 
       <div className="stage-form__field">
         <label htmlFor="telephone">Numéro de téléphone :</label>
-        <input type="tel" id="telephone" name="telephone" value={formData.telephone} onChange={handleChange} />
+        <input type="tel" id="telephone" name="telephone" onChange={handleChange} />
       </div>
 
 
@@ -481,37 +499,36 @@ const handleSubmit = async (e) => {
               type="checkbox"
               id="stageVolontaire1"
               name="stageVolontaire1"
-              checked={stageVolontaire1}
-              onChange={handleStageVolontaire1}
+              checked={formData.stageVolontaire1}
+              onChange={handleChange}
             />
             <label htmlFor="stageVolontaire1">Stage volontaire de récupération de points, cas n°1</label>
           </div>
 
-          {stageVolontaire1 && (
+          {formData.stageVolontaire1 && (
             <div className="stage-form__field-hidden">
               
               <div className="stage-form__field stage-form__field--stage">
               <input
                   type="number"
-                  id="champNombre"
-                  name="champNombre"
-
-                  onChange={handleAutreCoordonneesChange}
+                  id="stage1Solde"
+                  name="stage1Solde"
+                  onChange={handleChange}
                   min="0"
                   max="12"
                 />
-                <label htmlFor="champNombre">Je déclare le nombre de points qu'il me restent sur le Fichier National du Permis de Conduire</label>
+                <label htmlFor="stage1Solde">Je déclare le nombre de points qu'il me restent sur le Fichier National du Permis de Conduire</label>
               </div>
 
 
               <div className="stage-form__field stage-form__field--stage">
                 <input
                   type="checkbox"
-                  id="stageVolontaire"
-                  name="stageVolontaire"
-
+                  id="stage1SoldeUnknown"
+                  name="stage1SoldeUnknown"
+                  onChange={handleChange}
                 />
-                <label htmlFor="stageVolontaire">Je ne connais pas mon solde exact mais je suis en permis à 12 points et suis certain qu'il me reste actuellement entre 1 et 8 points sur le Fichier National du Permis de Conduire.</label>
+                <label htmlFor="stage1SoldeUnknown">Je ne connais pas mon solde exact mais je suis en permis à 12 points et suis certain qu'il me reste actuellement entre 1 et 8 points sur le Fichier National du Permis de Conduire.</label>
               </div>
             </div>
           )}
@@ -521,59 +538,57 @@ const handleSubmit = async (e) => {
               type="checkbox"
               id="stageVolontaire2"
               name="stageVolontaire2"
-              checked={stageVolontaire2}
-              onChange={handleStageVolontaire2}
+              checked={formData.stageVolontaire2}
+              onChange={handleChange}
             />
             <label htmlFor="stageVolontaire2">Stage obligatoire aprés réception de la lettre recommandée 48N (permis probatoire), cas n°2</label>
           </div>
 
-          {stageVolontaire2 && (
+          {formData.stageVolontaire2 && (
             <div className="stage-form__field-hidden stage-form__field-hidden--cas2">
               
               <div className="stage-form__field">
-                <label htmlFor="nom">Lieu de l'infraction :</label>
-                <input type="text" id="nom" name="nom" value={formData.nom} onChange={handleChange} />
+                <label htmlFor="stage2Lieu">Lieu de l'infraction :</label>
+                <input type="text" id="stage2Lieu" name="stage2Lieu" onChange={handleChange} />
               </div>
 
               <div className="stage-form__field">
-                <label htmlFor="dateNaissance">Date de l'infraction :</label>
-                <input type="date" id="dateNaissance" name="dateNaissance" value={formData.dateNaissance} onChange={handleChange} />
+                <label htmlFor="stage2Date">Date de l'infraction :</label>
+                <input type="date" id="stage2Date" name="stage2Date" onChange={handleChange} />
               </div>
 
               <div className="stage-form__field">
-                <label htmlFor="heure">Heure de l'infraction :</label>
-                <input type="text" id="heure" name="heure" value={"12h30"} onChange={handleChange} />
+                <label htmlFor="stage2Heure">Heure de l'infraction :</label>
+                <input type="time" id="stage2Heure" name="stage2Heure" onChange={handleChange} />
               </div>
 
               <div className="stage-form__field">
-                <label htmlFor="prenom">Motif de l'infraction :</label>
-                <select id="civilite" name="civilite" value={formData.civilite} onChange={handleChange}>
+                <label htmlFor="stage2Motif">Motif de l'infraction :</label>
+                <select id="stage2Motif" name="stage2Motif" onChange={handleChange}>
                   <option value="">Sélectionner</option>
-                  <option value="Mme">Alcool</option>
-                  <option value="Mlle">Vitesse</option>
-                  <option value="M">Feu rouge</option>
-                  <option value="Mme">Refus</option>
-                  <option value="Mlle">Sens interdit </option>
-                  <option value="M">Feu rouge</option>
+                  <option value="Alcool">Alcool</option>
+                  <option value="Vitesse">Vitesse</option>
+                  <option value="FeuRouge">Feu rouge</option>
+                  <option value="Refus">Refus</option>
+                  <option value="SensInterdit">Sens interdit</option>
                 </select>
               </div>
 
               <div className="stage-form__field">
-                <label htmlFor="dateNaissance">Solde de points :</label>
+                <label htmlFor="stage2Solde">Solde de points :</label>
                 <input
                   type="number"
-                  id="champNombre"
-                  name="champNombre"
-
-                  onChange={handleAutreCoordonneesChange}
+                  id="stage2Solde"
+                  name="stage2Solde"
+                  onChange={handleChange}
                   min="0"
                   max="12"
                 />
               </div>
 
               <div className="stage-form__field">
-                <label htmlFor="dateNaissance">Date de réception de la lettre 48N * :</label>
-                <input type="date" id="dateNaissance" name="dateNaissance" value={formData.dateNaissance} onChange={handleChange} />
+                <label htmlFor="stage2Date48N">Date de réception de la lettre 48N * :</label>
+                <input type="date" id="stage2Date48N" name="stage2Date48N" onChange={handleChange} />
               </div>
 
             </div>
@@ -584,13 +599,13 @@ const handleSubmit = async (e) => {
               type="checkbox"
               id="stageVolontaire3"
               name="stageVolontaire3"
-              checked={stageVolontaire3}
-              onChange={handleStageVolontaire3}
+              checked={formData.stageVolontaire3}
+              onChange={handleChange}
             />
             <label htmlFor="stageVolontaire3">Stage obligatoire d'alternative aux poursuites ou de composition pénale, cas n°3</label>
           </div>
 
-          {stageVolontaire3 && (
+          {formData.stageVolontaire3 && (
             <div className="stage-form__field__warning-text">
               <p>Vous avez choisi une inscription au cas de stage n°3. Les stages en cas 3 ne permettent pas de récupérer des points. </p>
             </div>
@@ -601,13 +616,13 @@ const handleSubmit = async (e) => {
               type="checkbox"
               id="stageVolontaire4"
               name="stageVolontaire4"
-              checked={stageVolontaire4}
-              onChange={handleStageVolontaire4}
+              checked={formData.stageVolontaire4}
+              onChange={handleChange}
             />
             <label htmlFor="stageVolontaire4">Stage obligatoire dans le cadre d'une peine complémentaire, cas n°4</label>
           </div>
 
-          {stageVolontaire4 && (
+          {formData.stageVolontaire4 && (
             <div className="stage-form__field__warning-text">
               <p>Vous êtes dans l'obligation de suivre un stage de sensibilitation à la sécurité routière dans le cadre d'une peine complémentaire. Les stages en cas 4 ne permettent pas de récupérer des points.</p>
             </div>
@@ -628,132 +643,119 @@ const handleSubmit = async (e) => {
 
 
 
-      {(stageVolontaire1 || stageVolontaire2) && (
-      <div className="stage-form__permis">
+      {(formData.stageVolontaire1 || formData.stageVolontaire2) && (
 
-          <h2>Mon permis de conduire</h2>
+        <div className="stage-form__permis">
 
-          <div className="stage-form__field stage-form__field--stage">
-            <input
-              type="checkbox"
-              id="newPermis"
-              name="newPermis"
-              checked={newPermis}
-              onChange={handleNewPermis}
-            />
-            <label htmlFor="newPermis">Nouveau format</label>
-          </div>
+            <h2>Mon permis de conduire</h2>
 
-          <div className="stage-form__field stage-form__field--stage">
-            <input
-              type="checkbox"
-              id="oldPermis"
-              name="oldPermis"
-              checked={oldPermis}
-              onChange={handleOldPermis}
-            />
-            <label htmlFor="oldPermis">Ancien format</label>
-          </div>
-
-          {newPermis && (
-            <div>
-
-              <img src={NewPermis} alt="nouveau-permis-img" />
-              <img src={NewPermisVerso} alt="nouveau-permis-img" />
-
-              <div className="stage-form__permis__field stage-form__permis__field--newpermis-date-delivrance">
-                <label htmlFor="dateNaissance">Permis délivré le * :</label>
-                <input type="date" id="dateNaissance" name="dateNaissance" value={formData.dateNaissance} onChange={handleChange} />
-              </div>
-
-              <div className="stage-form__permis__field stage-form__permis__field--newpermis-ville">
-                <label htmlFor="villee">Ville :</label>
-                <input
-                  type="text"
-                  id="villee"
-                  name="villee"
-                  value={formData.dateNaissance} onChange={handleChange} 
-                />
-              </div>
-
-              <div className="stage-form__permis__field stage-form__permis__field--newpermis-number">
-                <label htmlFor="adresse">Numéro de permis :</label>
-                <input
-                  type="text"
-                  id="adresse"
-                  name="adresse"
-                  value={autreCoordonnees.adresse}
-                  onChange={handleAutreCoordonneesChange}
-                />
-              </div>
-
-              <div className="stage-form__permis__field stage-form__permis__field--newpermis-olddate">
-                <label htmlFor="dateNaissance">Date la plus ancienne * :</label>
-                <input type="date" id="dateNaissance" name="dateNaissance" value={formData.dateNaissance} onChange={handleChange} />
-              </div>
-
-
-
+            <div className="stage-form__field stage-form__field--stage">
+              <input
+                type="checkbox"
+                id="newPermis"
+                name="newPermis"
+                checked={formData.newPermis}
+                onChange={handleChange}
+              />
+              <label htmlFor="newPermis">Nouveau format</label>
             </div>
-          )}
 
-          {oldPermis && (
-            <div>
-
-              <img src={OldPermis} alt="ancien-permis-img" />
-
-              <div className="stage-form__permis__field stage-form__permis__field--oldpermis-date-delivrance">
-                <label htmlFor="dateNaissance">Permis délivré le * :</label>
-                <input type="date" id="dateNaissance" name="dateNaissance" value={formData.dateNaissance} onChange={handleChange} />
-              </div>
-
-              <div className="stage-form__permis__field stage-form__permis__field--oldpermis-ville">
-                <label htmlFor="villee">Ville :</label>
-                <input
-                  type="text"
-                  id="villee"
-                  name="villee"
-                  value={autreCoordonnees.ville}
-                  onChange={handleAutreCoordonneesChange}
-                />
-              </div>
-
-              <div className="stage-form__permis__field stage-form__permis__field--oldpermis-number">
-                <label htmlFor="adresse">Numéro de permis :</label>
-                <input
-                  type="number"
-                  id="adresse"
-                  name="adresse"
-                  value={autreCoordonnees.adresse}
-                  onChange={handleAutreCoordonneesChange}
-                />  
-              </div>
-
-
-              <div className="stage-form__permis__field stage-form__permis__field--oldpermis-olddate">
-                <label htmlFor="dateNaissance">Date la plus ancienne * :</label>
-                <input type="date" id="dateNaissance" name="dateNaissance" value={formData.dateNaissance} onChange={handleChange} />
-              </div>
-
+            <div className="stage-form__field stage-form__field--stage">
+              <input
+                type="checkbox"
+                id="oldPermis"
+                name="oldPermis"
+                checked={formData.oldPermis}
+                onChange={handleChange}
+              />
+              <label htmlFor="oldPermis">Ancien format</label>
             </div>
-          )}
-      </div>
+
+            {formData.newPermis && (
+              <div>
+
+                <img src={NewPermis} alt="nouveau-permis-img" />
+                <img src={NewPermisVerso} alt="nouveau-permis-img" />
+
+                <div className="stage-form__permis__field stage-form__permis__field--newpermis-date-delivrance">
+                  <label htmlFor="newPermisDateDeliv">Permis délivré le * :</label>
+                  <input type="date" id="newPermisDateDeliv" name="newPermisDateDeliv" onChange={handleChange} />
+                </div>
+
+                <div className="stage-form__permis__field stage-form__permis__field--newpermis-ville">
+                  <label htmlFor="newPermisVille">Ville :</label>
+                  <input
+                    type="text"
+                    id="newPermisVille"
+                    name="newPermisVille"
+                    onChange={handleChange} 
+                  />
+                </div>
+
+                <div className="stage-form__permis__field stage-form__permis__field--newpermis-number">
+                  <label htmlFor="newPermisNumber">Numéro de permis :</label>
+                  <input
+                    type="text"
+                    id="newPermisNumber"
+                    name="newPermisNumber"
+                    onChange={handleChange} 
+                  />
+                </div>
+
+                <div className="stage-form__permis__field stage-form__permis__field--newpermis-olddate">
+                  <label htmlFor="newPermisDateAncienne">Date la plus ancienne * :</label>
+                  <input type="date" id="newPermisDateAncienne" name="newPermisDateAncienne" onChange={handleChange} />
+                </div>
+
+              </div>
+            )}
+
+            {formData.oldPermis && (
+              <div>
+
+                <img src={OldPermis} alt="ancien-permis-img" />
+
+                <div className="stage-form__permis__field stage-form__permis__field--oldpermis-date-delivrance">
+                  <label htmlFor="oldPermisDateDeliv">Permis délivré le * :</label>
+                  <input type="date" id="oldPermisDateDeliv" name="oldPermisDateDeliv" onChange={handleChange} />
+                </div>
+
+                <div className="stage-form__permis__field stage-form__permis__field--oldpermis-ville">
+                  <label htmlFor="oldPermisVille">Ville :</label>
+                  <input
+                    type="text"
+                    id="oldPermisVille"
+                    name="oldPermisVille"
+                    onChange={handleChange}
+                  />
+                </div>
+
+                <div className="stage-form__permis__field stage-form__permis__field--oldpermis-number">
+                  <label htmlFor="oldPermisNumber">Numéro de permis :</label>
+                  <input
+                    type="number"
+                    id="oldPermisNumber"
+                    name="oldPermisNumber"
+                    onChange={handleChange}
+                  />  
+                </div>
+
+
+                <div className="stage-form__permis__field stage-form__permis__field--oldpermis-olddate">
+                  <label htmlFor="oldPermisDateAncienne">Date la plus ancienne * :</label>
+                  <input type="date" id="oldPermisDateAncienne" name="oldPermisDateAncienne" onChange={handleChange} />
+                </div>
+
+              </div>
+            )}
+        </div>
       )}
-
-
-
-
-
-
 
 
 
       <div className="stage-form__submit">
         <button type="submit">Soumettre</button>
       </div>
-
-
-
 
 
 
