@@ -51,12 +51,35 @@ const host = "http://localhost:3000/api/products/";
     codePostal: '',
     email: '',
     telephone: '',
+
     stageVolontaire1: false,
+    stageVolontaire1Solde: '',
+    stageVolontaire1SoldeUnknown: false,
+
     stageVolontaire2: false,
+    stageVolontaire2Lieu: '',
+    stageVolontaire2Date: '',
+    stageVolontaire2Heure: '',
+    stageVolontaire2Motif: '',
+    stageVolontaire2Solde: '',
+    stageVolontaire2Date48N: '',
+
     stageVolontaire3: false,
     stageVolontaire4: false,
+
     newPermis: false,
-    oldPermis: false
+    newPermisDateDeliv: '',
+    newPermisVille: '',
+    newPermisNumber: '',
+    newPermisDateAncienne: '',
+
+    oldPermis: false,
+    oldPermisDateDeliv: '',
+    oldPermisVille: '',
+    oldPermisNumber: '',
+    oldPermisDateAncienne: '',
+
+    paiementOnLine: '',
   });
 
 
@@ -72,7 +95,7 @@ const handleChange = (e) => {
       if (name.startsWith('stageVolontaire')) {
         const updatedFormData = { ...prevData };
         for (const key in updatedFormData) {
-          if (key.startsWith('stageVolontaire')) {
+          if ( name !== "stageVolontaire1SoldeUnknown" && key.startsWith('stageVolontaire')) {
             updatedFormData[key] = false;
           }
         }
@@ -86,6 +109,10 @@ const handleChange = (e) => {
           ...prevData,
           newPermis: true,
           oldPermis: false,
+          oldPermisDateDeliv: '',
+          oldPermisVille: '',
+          oldPermisNumber: '',
+          oldPermisDateAncienne: '',
         };
       }
 
@@ -94,6 +121,10 @@ const handleChange = (e) => {
           ...prevData,
           newPermis: false,
           oldPermis: true,
+          newPermisDateDeliv: '',
+          newPermisVille: '',
+          newPermisNumber: '',
+          newPermisDateAncienne: '',
         };
       }
 
@@ -511,24 +542,24 @@ const handleSubmit = async (e) => {
               <div className="stage-form__field stage-form__field--stage">
               <input
                   type="number"
-                  id="stage1Solde"
-                  name="stage1Solde"
+                  id="stageVolontaire1Solde"
+                  name="stageVolontaire1Solde"
                   onChange={handleChange}
                   min="0"
                   max="12"
                 />
-                <label htmlFor="stage1Solde">Je déclare le nombre de points qu'il me restent sur le Fichier National du Permis de Conduire</label>
+                <label htmlFor="stageVolontaire1Solde">Je déclare le nombre de points qu'il me restent sur le Fichier National du Permis de Conduire</label>
               </div>
 
 
               <div className="stage-form__field stage-form__field--stage">
                 <input
                   type="checkbox"
-                  id="stage1SoldeUnknown"
-                  name="stage1SoldeUnknown"
+                  id="stageVolontaire1SoldeUnknown"
+                  name="stageVolontaire1SoldeUnknown"
                   onChange={handleChange}
                 />
-                <label htmlFor="stage1SoldeUnknown">Je ne connais pas mon solde exact mais je suis en permis à 12 points et suis certain qu'il me reste actuellement entre 1 et 8 points sur le Fichier National du Permis de Conduire.</label>
+                <label htmlFor="stageVolontaire1SoldeUnknown">Je ne connais pas mon solde exact mais je suis en permis à 12 points et suis certain qu'il me reste actuellement entre 1 et 8 points sur le Fichier National du Permis de Conduire.</label>
               </div>
             </div>
           )}
@@ -548,23 +579,23 @@ const handleSubmit = async (e) => {
             <div className="stage-form__field-hidden stage-form__field-hidden--cas2">
               
               <div className="stage-form__field">
-                <label htmlFor="stage2Lieu">Lieu de l'infraction :</label>
-                <input type="text" id="stage2Lieu" name="stage2Lieu" onChange={handleChange} />
+                <label htmlFor="stageVolontaire2Lieu">Lieu de l'infraction :</label>
+                <input type="text" id="stageVolontaire2Lieu" name="stageVolontaire2Lieu" onChange={handleChange} />
               </div>
 
               <div className="stage-form__field">
-                <label htmlFor="stage2Date">Date de l'infraction :</label>
-                <input type="date" id="stage2Date" name="stage2Date" onChange={handleChange} />
+                <label htmlFor="stageVolontaire2Date">Date de l'infraction :</label>
+                <input type="date" id="stageVolontaire2Date" name="stageVolontaire2Date" onChange={handleChange} />
               </div>
 
               <div className="stage-form__field">
-                <label htmlFor="stage2Heure">Heure de l'infraction :</label>
-                <input type="time" id="stage2Heure" name="stage2Heure" onChange={handleChange} />
+                <label htmlFor="stageVolontaire2Heure">Heure de l'infraction :</label>
+                <input type="time" id="stageVolontaire2Heure" name="stageVolontaire2Heure" onChange={handleChange} />
               </div>
 
               <div className="stage-form__field">
-                <label htmlFor="stage2Motif">Motif de l'infraction :</label>
-                <select id="stage2Motif" name="stage2Motif" onChange={handleChange}>
+                <label htmlFor="stageVolontaire2Motif">Motif de l'infraction :</label>
+                <select id="stageVolontaire2Motif" name="stageVolontaire2Motif" onChange={handleChange}>
                   <option value="">Sélectionner</option>
                   <option value="Alcool">Alcool</option>
                   <option value="Vitesse">Vitesse</option>
@@ -575,11 +606,11 @@ const handleSubmit = async (e) => {
               </div>
 
               <div className="stage-form__field">
-                <label htmlFor="stage2Solde">Solde de points :</label>
+                <label htmlFor="stageVolontaire2Solde">Solde de points :</label>
                 <input
                   type="number"
-                  id="stage2Solde"
-                  name="stage2Solde"
+                  id="stageVolontaire2Solde"
+                  name="stageVolontaire2Solde"
                   onChange={handleChange}
                   min="0"
                   max="12"
@@ -587,8 +618,8 @@ const handleSubmit = async (e) => {
               </div>
 
               <div className="stage-form__field">
-                <label htmlFor="stage2Date48N">Date de réception de la lettre 48N * :</label>
-                <input type="date" id="stage2Date48N" name="stage2Date48N" onChange={handleChange} />
+                <label htmlFor="stageVolontaire2Date48N">Date de réception de la lettre 48N * :</label>
+                <input type="date" id="stageVolontaire2Date48N" name="stageVolontaire2Date48N" onChange={handleChange} />
               </div>
 
             </div>
