@@ -374,7 +374,6 @@ body {
   display: flex;
   align-items: center;
   flex-direction: column;
-  margin-left: 20px;
   width: 600px;
   border: 0.5px solid rgb(209, 207, 207);
   color: grey;
@@ -496,18 +495,6 @@ body {
 }
 .stage-form__submit {
   margin-top: 20px;
-}
-.stage-form__submit button {
-  background-color: #FFA500;
-  color: white;
-  padding: 10px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 16px;
-}
-.stage-form__submit button:hover {
-  background-color: #cc8400;
 }
 
 header {
@@ -676,11 +663,38 @@ header .infos__dispo {
   margin-bottom: 50px;
   margin-top: 30px;
 }
+.stage-reservation button {
+  background-color: #FFA500;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  width: 200px;
+}
+.stage-reservation button:hover {
+  background-color: #cc8400;
+}
 .stage-reservation__content {
   display: flex;
   justify-content: center;
   width: 75%;
   padding-top: 30px;
+  margin-left: 20px;
+}
+.stage-reservation__content__form {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.stage-reservation__content__form__payment {
+  background-color: aqua;
+  width: 100%;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 .stage-reservation img {
   width: 300px;

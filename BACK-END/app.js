@@ -10,6 +10,9 @@ const userRoutes = require('./routes/user');
 
 
 
+const stripe = require("stripe")('sk_test_51OSK1BCg4zAeNBqIBNhGwmeVnW6jgETDOsgRgTq3rKIfWhnBsX7xxi4PCm0BQi9Oi7bWELH1bKairJtYaQjapOaz00jPIbKu75');
+
+
 
 
 
@@ -44,6 +47,55 @@ app.use(bodyParser.json());
 
 app.use('/api/sauces', sauceRoutes);
 app.use('/api/auth', userRoutes);
+
+
+
+
+
+
+
+
+
+app.post("/create-payment-intent", async (req, res) => {
+  try {
+    const paymentIntent = await stripe.paymentIntents.create({
+      currency: "EUR",
+      amount: 1999,
+      automatic_payment_methods: { enabled: true },
+    });
+
+    // Send publishable key and PaymentIntent details to client
+    res.send({
+      clientSecret: paymentIntent.client_secret,
+    });
+  } catch (e) {
+    return res.status(400).send({
+      error: {
+        message: e.message,
+      },
+    });
+  }
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

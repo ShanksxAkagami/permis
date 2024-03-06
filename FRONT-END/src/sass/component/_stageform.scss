@@ -6,7 +6,6 @@ $border-radius: 5px;
   display: flex;
   align-items: center;
   flex-direction: column;
-margin-left: 20px;
   width: 600px;
   border: 0.5px solid rgb(209, 207, 207);
   color: grey;
@@ -159,19 +158,7 @@ margin-left: 20px;
   &__submit {
     margin-top: 20px;
 
-    button {
-      background-color: $couleur-orange;
-      color: white;
-      padding: 10px;
-      border: none;
-      border-radius: $border-radius;
-      cursor: pointer;
-      font-size: 16px;
 
-      &:hover {
-        background-color: darken($couleur-orange, 10%);
-      }
-    }
   }
 }
 
